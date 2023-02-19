@@ -7,8 +7,10 @@ import Loading from '../Shared/Loading';
 const AddDoctor = () => {
      const {register,formState: { errors },handleSubmit,reset} = useForm();
 
-    const { data :services ,isLoading } = useQuery("services", () =>
-      fetch("http://localhost:5000/service").then((res) => res.json())
+    const { data: services, isLoading } = useQuery("services", () =>
+      fetch("https://doctors-portal-server-2023.onrender.com/service").then(
+        (res) => res.json()
+      )
     );
 
     const imageStorageKey='1bf0668d642a9c74d82ff4d8bc9ca13f' 
@@ -33,24 +35,25 @@ const AddDoctor = () => {
                   img: img
                 }
                 //send to your database
-              fetch("http://localhost:5000/doctor", {
-                method: 'POST',
+              fetch("https://doctors-portal-server-2023.onrender.com/doctor", {
+                method: "POST",
                 headers: {
-                  'content-type': 'application/json',
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                  "content-type": "application/json",
+                  authorization: `Bearer ${localStorage.getItem(
+                    "accessToken"
+                  )}`,
                 },
-                body : JSON.stringify(doctor)
+                body: JSON.stringify(doctor),
               })
-                .then(res => res.json())
-                .then(inserted => {
+                .then((res) => res.json())
+                .then((inserted) => {
                   if (inserted.insertedId) {
-                    toast.success('Doctor added successfully');
+                    toast.success("Doctor added successfully");
                     reset();
+                  } else {
+                    toast.error("Failed to add the doctor");
                   }
-                  else {
-                    toast.error('Failed to add the doctor');
-                  }
-              }) 
+                }); 
             }
             //console.log( 'imgbb' , result);
         })

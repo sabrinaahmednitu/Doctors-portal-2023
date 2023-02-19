@@ -26,15 +26,16 @@ const BookingModal = ({ date, treatment, setTreatment ,refetch }) => {
       phone: event.target.phone.value
     };
      
-    fetch('http://localhost:5000/booking', {
-      method: 'POST',
+    // fetch('http://localhost:5000/booking', {
+    fetch("https://doctors-portal-server-2023.onrender.com/booking", {
+      method: "POST",
       headers: {
-        'content-type' : 'application/json'
+        "content-type": "application/json",
       },
-      body : JSON.stringify(booking)
+      body: JSON.stringify(booking),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         //console.log(data)
         if (data.success) {
           toast(`Appointment is set , ${formattedDate} at ${slot}`);
@@ -46,7 +47,7 @@ const BookingModal = ({ date, treatment, setTreatment ,refetch }) => {
         //sob kaj ses e null kore dela moda theke data sob sore jabe,  autometic off hoye jabe modal
         refetch();
         setTreatment(null);
-      })
+      });
 
 
    

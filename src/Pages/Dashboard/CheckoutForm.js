@@ -16,14 +16,17 @@ const CheckoutForm = ({ appointment }) => {
 
 
    useEffect(() =>{
-     fetch("http://localhost:5000/create-payment-intent", {
-       method: "POST",
-       headers: {
-         "content-type": "application/json",
-         "authorization": `Bearer ${localStorage.getItem("accessToken")}`
-       },
-       body: JSON.stringify({ price })
-     })
+     fetch(
+       "https://doctors-portal-server-2023.onrender.com/create-payment-intent",
+       {
+         method: "POST",
+         headers: {
+           "content-type": "application/json",
+           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+         },
+         body: JSON.stringify({ price }),
+       }
+     )
        .then((res) => res.json())
        .then((data) => {
          if (data?.clientSecret) {
@@ -93,13 +96,13 @@ const CheckoutForm = ({ appointment }) => {
         transactionId: paymentIntent.id,
       }
 
-      fetch(`http://localhost:5000/booking/${_id}`, {
+      fetch(`https://doctors-portal-server-2023.onrender.com/booking/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
-          "authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify(payment)
+        body: JSON.stringify(payment),
       })
         .then((res) => res.json())
         .then((data) => {
