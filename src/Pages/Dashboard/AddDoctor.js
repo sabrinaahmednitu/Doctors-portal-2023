@@ -8,7 +8,8 @@ const AddDoctor = () => {
      const {register,formState: { errors },handleSubmit,reset} = useForm();
 
     const { data: services, isLoading } = useQuery("services", () =>
-      fetch("https://doctors-portal-server-2023.onrender.com/service").then(
+      fetch("http://localhost:5000/service").then(
+        // fetch("https://doctors-portal-server-2023.onrender.com/service").then(
         (res) => res.json()
       )
     );
@@ -35,7 +36,8 @@ const AddDoctor = () => {
                   img: img
                 }
                 //send to your database
-              fetch("https://doctors-portal-server-2023.onrender.com/doctor", {
+              fetch("http://localhost:5000/doctor", {
+                // fetch("https://doctors-portal-server-2023.onrender.com/doctor", {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",

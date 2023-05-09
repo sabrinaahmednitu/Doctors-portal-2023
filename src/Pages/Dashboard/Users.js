@@ -4,12 +4,19 @@ import Loading from '../Shared/Loading';
 import UserRow from './UserRow';
 
 const Users = () => {
-    const { data: users, isLoading ,refetch } = useQuery('users', () =>fetch('https://doctors-portal-server-2023.onrender.com/user', {
-            method: 'GET',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
-            }
-      }).then((res) => res.json()));
+    const {
+      data: users,
+      isLoading,
+      refetch,
+    } = useQuery("users", () =>
+      fetch("http://localhost:5000/user", {
+        // const { data: users, isLoading ,refetch } = useQuery('users', () =>fetch('https://doctors-portal-server-2023.onrender.com/user', {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json())
+    );
     if(isLoading) {
         return <Loading></Loading>
     }
@@ -29,11 +36,11 @@ const Users = () => {
     </thead>
     <tbody>
      {
-        users.map(user=><UserRow
+            users.map(user=><UserRow
             key={user._id}
             user={user}
             refetch={refetch}
-        ></UserRow>) 
+            ></UserRow>) 
      }
     </tbody>
   </table>

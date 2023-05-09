@@ -1,11 +1,11 @@
 import React from 'react';
 
 const About = () => {
-    return (
-        <div>
-            <h3>i am about</h3>
-        </div>
-    );
+  return (
+    <div>
+     Information About our hospital
+    </div>
+  );
 };
 
 export default About;

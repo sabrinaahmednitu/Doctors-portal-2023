@@ -16,7 +16,7 @@ import MyHistory from './Pages/Dashboard/MyHistory';
 import Users from './Pages/Dashboard/Users';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import AddDoctor from './Pages/Dashboard/AddDoctor';
-import ManageDoctors from './Pages/Dashboard/ManageDoctors';
+import ManageDoctors from './Pages/Dashboard/ManageDoctors'; 
 import Payment from './Pages/Dashboard/Payment';
 
 function App() {

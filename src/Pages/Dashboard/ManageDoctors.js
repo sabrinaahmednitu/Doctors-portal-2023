@@ -7,11 +7,17 @@ import DoctorRow from './DoctorRow';
 
 const ManageDoctors = () => {
   const [deletingDoctor , setDeletingDoctor ]=useState(null)
-    const { data: doctors, isLoading , refetch } = useQuery("doctors", ()=>fetch("https://doctors-portal-server-2023.onrender.com/doctor", {
+    const {
+      data: doctors,
+      isLoading,
+      refetch,
+    } = useQuery("doctors", () =>
+      fetch("http://localhost:5000/doctor", {
+        // const { data: doctors, isLoading , refetch } = useQuery("doctors", ()=>fetch("https://doctors-portal-server-2023.onrender.com/doctor", {
         headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`
-        }
-      }).then(res =>res.json())
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json())
     );
 
     if(isLoading) {

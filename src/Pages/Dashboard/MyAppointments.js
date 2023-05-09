@@ -13,25 +13,25 @@ const MyAppointments = () => {
   const navigate = useNavigate();
     useEffect(() => {
         if (user){
-          fetch(`https://doctors-portal-server-2023.onrender.com/booking?patient=${user.email}`, {
-            method: 'GET',
+          fetch(`http://localhost:5000/booking?patient=${user.email}`, {
+            // fetch(`https://doctors-portal-server-2023.onrender.com/booking?patient=${user.email}`, {
+            method: "GET",
             headers: {
-              'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }
-                })
-            .then(res => {
-              console.log('res', res);
-              if (res.status === 401 || res.status === 403){
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          })
+            .then((res) => {
+              console.log("res", res);
+              if (res.status === 401 || res.status === 403) {
                 signOut(auth);
                 localStorage.removeItem("accessToken");
-                navigate('/');
+                navigate("/");
               }
-              return res.json()
+              return res.json();
             })
-            .then(data=> {
-
-            
-                setAppointments(data) });
+            .then((data) => {
+              setAppointments(data);
+            });
             }
     }, [user])
     

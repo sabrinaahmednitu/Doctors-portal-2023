@@ -8,7 +8,8 @@ const useAdmin = user => {
         const email = user?.email;
         if (email) {
               fetch(
-                `https://doctors-portal-server-2023.onrender.com/admin/${email}`,
+                `http://localhost:5000/admin/${email}`,
+                // `https://doctors-portal-server-2023.onrender.com/admin/${email}`,
                 {
                   method: "GET",
                   headers: {
